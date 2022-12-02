@@ -26,4 +26,4 @@ operation::findCards[snippets='http-request,http-response']
 
 === tag 이용한 조회
 
-operation::tag[snippets='http-request,http-response']
+operation::tag[snippets='http-request,http-response,request-parameters']

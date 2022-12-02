@@ -3,10 +3,14 @@ package gdg.hack.connectfriendsserver;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gdg.hack.connectfriendsserver.ui.CardResponse;
+import gdg.hack.connectfriendsserver.service.ConnectionService;
+import gdg.hack.connectfriendsserver.service.dto.CardResponse;
+import gdg.hack.connectfriendsserver.service.dto.CardResponses;
 import gdg.hack.connectfriendsserver.ui.ConnectionController;
 import java.util.HashMap;
 import java.util.List;
@@ -155,9 +159,10 @@ public class DocumentationTest {
     ).andDo(
         document(
             "tag",
-            getDocumentRequest(),
-            getDocumentResponse(),
-            pathParameters()
+            requestParameters(
+                parameterWithName("tag").description(
+                    "tag는 BACKEND, FRONTEND, PLANNING, DESIGN 중 하나의 정보가 들어갑니다.")
+            )
         )
     );
   }
