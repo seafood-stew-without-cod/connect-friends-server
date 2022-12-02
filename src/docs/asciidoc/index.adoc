@@ -1,0 +1,29 @@
+= Connections Friends
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+== Card
+
+=== 자신의 Card 생성
+
+operation::create[snippets='http-request,http-response']
+
+=== 자신의 Card 조회
+
+operation::findCard[snippets='http-request,http-response']
+
+=== 명함 전달
+
+operation::link[snippets='http-request,http-response']
+
+=== Card 보관함 조회
+
+operation::findCards[snippets='http-request,http-response']
+
+=== tag 이용한 조회
+
+operation::tag[snippets='http-request,http-response']
