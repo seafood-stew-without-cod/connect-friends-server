@@ -110,7 +110,7 @@ public class DocumentationTest {
     mockMvc.perform(
         RestDocumentationRequestBuilders
             .get("/cards/{cardId}", 1)
-            .param("id", "23")
+            .param("mycard", "23")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
