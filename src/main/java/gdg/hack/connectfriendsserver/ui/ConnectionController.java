@@ -28,18 +28,18 @@ public class ConnectionController {
   }
 
   @GetMapping("me")
-  public ResponseEntity<CardResponse> card(@RequestHeader Long id) {
+  public ResponseEntity<CardResponse> card(@RequestParam Long id) {
     return ResponseEntity.ok(connectionService.findById(id));
   }
 
   @GetMapping
-  public ResponseEntity<CardResponses> findCards(@RequestHeader Long id,
+  public ResponseEntity<CardResponses> findCards(@RequestParam Long id,
       @RequestParam(required = false) String tag) {
     return ResponseEntity.ok(connectionService.findCardsById(id, tag));
   }
 
   @GetMapping("{cardId}")
-  public ResponseEntity<CardResponse> link(@RequestHeader Long id, @PathVariable Long cardId) {
+  public ResponseEntity<CardResponse> link(@RequestParam Long id, @PathVariable Long cardId) {
     return ResponseEntity.ok(connectionService.link(id, cardId));
   }
 
