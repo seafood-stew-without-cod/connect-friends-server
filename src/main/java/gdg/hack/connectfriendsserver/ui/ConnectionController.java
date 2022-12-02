@@ -7,6 +7,7 @@ import gdg.hack.connectfriendsserver.service.dto.CardResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,24 +23,23 @@ public class ConnectionController {
   private final ConnectionService connectionService;
 
   @PostMapping("me")
-  public ResponseEntity<CardResponse> createCard(@RequestHeader String id,
-      @RequestBody CardRequest cardRequest) {
-    return ResponseEntity.ok(connectionService.create(id, cardRequest));
+  public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest cardRequest) {
+    return ResponseEntity.ok(connectionService.create(cardRequest));
   }
 
   @GetMapping("me")
-  public ResponseEntity<CardResponse> card(@RequestHeader String id) {
+  public ResponseEntity<CardResponse> card(@RequestHeader Long id) {
     return ResponseEntity.ok(connectionService.findById(id));
   }
 
   @GetMapping
-  public ResponseEntity<CardResponses> findCards(@RequestHeader String id,
+  public ResponseEntity<CardResponses> findCards(@RequestHeader Long id,
       @RequestParam(required = false) String tag) {
     return ResponseEntity.ok(connectionService.findCardsById(id, tag));
   }
 
-  @PostMapping
-  public ResponseEntity<CardResponse> link(@RequestHeader String id, @RequestParam String cardId) {
+  @GetMapping("{cardId}")
+  public ResponseEntity<CardResponse> link(@RequestHeader Long id, @PathVariable Long cardId) {
     return ResponseEntity.ok(connectionService.link(id, cardId));
   }
 

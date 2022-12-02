@@ -1,17 +1,21 @@
 package gdg.hack.connectfriendsserver.service.dto;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class CardResponse {
 
-  private final String name;
-  private final String phone;
-  private final String email;
-  private final String git;
-  private final String linkedIn;
-  private final String tag;
+  private Long cardId;
+  private String name;
+  private String phone;
+  private String email;
+  private String git;
+  private String linkedIn;
+  private String tag;
 }
