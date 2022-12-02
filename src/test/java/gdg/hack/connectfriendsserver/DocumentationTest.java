@@ -33,16 +33,19 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(ConnectionController.class)
 public class DocumentationTest {
 
-  private static final CardResponse 이건창_명함 = new CardResponse("이건창", "010-0000-000",
+  private static final CardResponse 이건창_명함 = new CardResponse(1L, "이건창",
+      "010-0000-7000",
       "email@email.com", "this-is-spear", null, "BACKEND");
 
-  private static final CardResponse 다른_명함 = new CardResponse("누군가", "010-0000-000",
+  private static final CardResponse 다른_명함 = new CardResponse(2L, "누군가", "010-0000-8000",
       "email@email.com", "other", null, "FRONTEND");
 
-  private static final CardResponse 또다른_명함 = new CardResponse("또다른 누군가", "010-0000-000",
+  private static final CardResponse 또다른_명함 = new CardResponse(3L, "또다른 누군가",
+      "010-0000-0080",
       "email@email.com", "another", null, "FRONTEND");
 
-  private static final CardResponse 기획자_명함 = new CardResponse("또다른 누군가", "010-0000-000",
+  private static final CardResponse 기획자_명함 = new CardResponse(4L, "또다른 누군가",
+      "010-0000-0090",
       "email@email.com", "another", null, "PLANNING");
 
   @Autowired
@@ -55,7 +58,7 @@ public class DocumentationTest {
 
   @Test
   void create() throws Exception {
-    when(connectionService.create(any(), any())).thenReturn(이건창_명함);
+    when(connectionService.create(any())).thenReturn(이건창_명함);
 
     Map<String, String> params = new HashMap<>();
     params.put("name", "이건창");
@@ -70,7 +73,6 @@ public class DocumentationTest {
             .post("/cards/me")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
-            .header("id", "123-2323-1231-23")
             .content(objectMapper.writeValueAsString(params))
     ).andDo(
         document(
@@ -90,7 +92,7 @@ public class DocumentationTest {
         RestDocumentationRequestBuilders
             .get("/cards/me")
             .accept(MediaType.APPLICATION_JSON)
-            .header("id", "123-2323-1231-23")
+            .header("id", 1)
     ).andDo(
         document(
             "findCard",
@@ -107,16 +109,17 @@ public class DocumentationTest {
 
     mockMvc.perform(
         RestDocumentationRequestBuilders
-            .post("/cards")
-            .param("cardId", "123-2-31123")
-            .header("id", "123-2323-1231-23")
+            .get("/cards/{cardId}", 1)
+            .header("id", 23)
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
             "link",
             getDocumentRequest(),
             getDocumentResponse(),
-            pathParameters()
+            pathParameters(
+                parameterWithName("cardId").description("카드의 식별자")
+            )
         )
     );
   }
@@ -130,7 +133,7 @@ public class DocumentationTest {
     mockMvc.perform(
         RestDocumentationRequestBuilders
             .get("/cards")
-            .header("id", "123-2323-1231-23")
+            .header("id", 123)
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
@@ -154,7 +157,7 @@ public class DocumentationTest {
         RestDocumentationRequestBuilders
             .get("/cards")
             .param("tag", "FRONTEND")
-            .header("id", "123-2323-1231-23")
+            .header("id", 123)
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
