@@ -92,7 +92,7 @@ public class DocumentationTest {
         RestDocumentationRequestBuilders
             .get("/cards/me")
             .accept(MediaType.APPLICATION_JSON)
-            .header("id", 1)
+            .param("id", "1")
     ).andDo(
         document(
             "findCard",
@@ -110,7 +110,7 @@ public class DocumentationTest {
     mockMvc.perform(
         RestDocumentationRequestBuilders
             .get("/cards/{cardId}", 1)
-            .header("id", 23)
+            .param("mycard", "23")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
@@ -133,7 +133,7 @@ public class DocumentationTest {
     mockMvc.perform(
         RestDocumentationRequestBuilders
             .get("/cards")
-            .header("id", 123)
+            .param("id", "123")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
@@ -157,14 +157,16 @@ public class DocumentationTest {
         RestDocumentationRequestBuilders
             .get("/cards")
             .param("tag", "FRONTEND")
-            .header("id", 123)
+            .param("id", "123")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(
         document(
             "tag",
             requestParameters(
-                parameterWithName("tag").description(
-                    "tag는 BACKEND, FRONTEND, PLANNING, DESIGN 중 하나의 정보가 들어갑니다.")
+                parameterWithName("tag")
+                    .description("tag는 BACKEND, FRONTEND, PLANNING, DESIGN 중 하나의 정보가 들어갑니다."),
+                parameterWithName("id")
+                    .description("id 값")
             )
         )
     );
