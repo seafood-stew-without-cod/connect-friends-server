@@ -49,6 +49,11 @@ public class ConnectionService {
   public CardResponse link(Long id, Long cardId) {
     Member member = memberRepository.findByCardId(id).orElseThrow(IllegalArgumentException::new);
     Card card = cardRepository.findById(cardId).orElseThrow(IllegalArgumentException::new);
+
+    if (member.getCardIds().stream().anyMatch(i -> i.equals(cardId))){
+      throw new IllegalArgumentException();
+    }
+
     member.addCards(card.getId());
     memberRepository.save(member);
     return getCardResponse(card);

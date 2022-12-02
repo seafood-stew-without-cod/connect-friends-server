@@ -46,7 +46,7 @@ public class IntegrationTest {
     ResultActions 조회_요청 = mockMvc.perform(
         MockMvcRequestBuilders
             .get("/cards/me")
-            .header("id", cardId)
+            .param("id", "" + cardId)
             .accept(MediaType.APPLICATION_JSON)
     ).andExpect(status().isOk());
 
