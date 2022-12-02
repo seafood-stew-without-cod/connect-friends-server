@@ -1,4 +1,4 @@
-package gdg.hack.connectfriendsserver.ui;
+package gdg.hack.connectfriendsserver.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

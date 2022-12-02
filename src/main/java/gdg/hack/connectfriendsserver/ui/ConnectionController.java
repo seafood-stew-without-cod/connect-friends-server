@@ -1,7 +1,9 @@
 package gdg.hack.connectfriendsserver.ui;
 
-import gdg.hack.connectfriendsserver.CardResponses;
-import gdg.hack.connectfriendsserver.ConnectionService;
+import gdg.hack.connectfriendsserver.service.dto.CardResponses;
+import gdg.hack.connectfriendsserver.service.ConnectionService;
+import gdg.hack.connectfriendsserver.service.dto.CardRequest;
+import gdg.hack.connectfriendsserver.service.dto.CardResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

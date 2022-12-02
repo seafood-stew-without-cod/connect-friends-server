@@ -1,7 +1,8 @@
-package gdg.hack.connectfriendsserver;
+package gdg.hack.connectfriendsserver.service;
 
-import gdg.hack.connectfriendsserver.ui.CardRequest;
-import gdg.hack.connectfriendsserver.ui.CardResponse;
+import gdg.hack.connectfriendsserver.service.dto.CardResponses;
+import gdg.hack.connectfriendsserver.service.dto.CardRequest;
+import gdg.hack.connectfriendsserver.service.dto.CardResponse;
 import org.springframework.stereotype.Service;
 
 @Service
