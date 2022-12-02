@@ -1,6 +1,6 @@
-package gdg.hack.connectfriendsserver;
+package gdg.hack.connectfriendsserver.service.dto;
 
-import gdg.hack.connectfriendsserver.ui.CardResponse;
+import gdg.hack.connectfriendsserver.service.dto.CardResponse;
 import java.util.ArrayList;
 import java.util.List;
 

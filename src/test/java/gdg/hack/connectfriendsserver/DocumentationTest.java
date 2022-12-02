@@ -6,7 +6,9 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gdg.hack.connectfriendsserver.ui.CardResponse;
+import gdg.hack.connectfriendsserver.service.ConnectionService;
+import gdg.hack.connectfriendsserver.service.dto.CardResponse;
+import gdg.hack.connectfriendsserver.service.dto.CardResponses;
 import gdg.hack.connectfriendsserver.ui.ConnectionController;
 import java.util.HashMap;
 import java.util.List;
